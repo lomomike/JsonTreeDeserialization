@@ -1,0 +1,28 @@
+﻿{
+  "Roots": [
+    {
+      "id": "MyDocuments",
+      "type": "Folder",
+      "nestedObjects": [
+        {
+          "id": "Work",
+          "type": "Folder",
+          "nestedObjects": [
+             {
+                "id": "MonthlyReport",
+                "type": "File",
+                "fileType": "xlsx",
+                "size" :  1024
+              }
+          ]
+        },
+        {
+          "id": "YerlyReport",
+          "type": "File",
+          "fileType": "docx",
+          "size" :  2048
+        }
+      ]
+    }
+  ]
+}
