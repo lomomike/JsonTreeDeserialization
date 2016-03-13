@@ -14,10 +14,8 @@ namespace JsonTreeDeserializer
 		static void Main(string[] args)
 		{
 			var tree = System.IO.File.ReadAllText("tree.json");
-
 			var reader = new JsonTextReader(new StringReader(tree));
-			
-			var content = JsonSerializer.CreateDefault().Deserialize<FileContent>(reader);
+			FileContent content = JsonSerializer.CreateDefault().Deserialize<FileContent>(reader);
 
 			Console.WriteLine(JsonConvert.SerializeObject(content, new JsonSerializerSettings
 			{
@@ -72,7 +70,7 @@ namespace JsonTreeDeserializer
 
 		public override bool CanConvert(Type objectType)
 		{
-			return typeof(ITreeNode).IsAssignableFrom(objectType);
+			return false;
 		}
 	}
 
@@ -84,12 +82,12 @@ namespace JsonTreeDeserializer
 
 	interface ITreeNode
 	{
-		string Id { get; set; }
+		string Name { get; set; }
 	}
 
 	class Folder : ITreeNode
 	{
-		public string Id { get; set; }
+		public string Name { get; set; }
 
 		[JsonConverter(typeof(TreeNodeConverter))]
 		public List<ITreeNode> NestedObjects { get; set; }
@@ -97,7 +95,7 @@ namespace JsonTreeDeserializer
 
 	class File : ITreeNode
 	{
-		public string Id { get; set; }
+		public string Name { get; set; }
 
 		public int Size { get; set; }
 
